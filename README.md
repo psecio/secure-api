@@ -17,3 +17,9 @@ php -S localhost:8000
 ```
 
 Then go to `http://localhost:8000` in a browser to view the result.
+
+## The Series
+
+- [Part 1](https://websec.io/2017/04/14/Build-Secure-API-Part1.html)
+- [Part 2](https://websec.io/2017/04/14/Build-Secure-API-Part2.html)
+- [Part 3](https://websec.io/2017/04/14/Build-Secure-API-Part3.html)
