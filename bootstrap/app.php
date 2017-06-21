@@ -43,15 +43,20 @@ $container['errorHandler'] = function($container) {
     return function ($request, $response, $exception = null) use ($container) {
         $code = 500;
         $message = 'There was an error';
-        
+
         if ($exception !== null) {
             $code = $exception->getCode();
             $message = $exception->getMessage();
         }
 
+        // If it's not a valid HTTP status code, replace it with a 500
+        if (!is_integer($code) || $code < 100 || $code > 599) {
+            $code = 500;
+        }
+
         // Use this for debugging purposes
-        /*error_log($exception->getMessage().' in '.$exception->getFile().' - ('
-            .$exception->getLine().', '.get_class($exception).')');*/
+        error_log($exception->getCode().' ==> '.$exception->getMessage().' in '.$exception->getFile().' - ('
+            .$exception->getLine().', '.get_class($exception).')');
 
         return $container['response']
             ->withStatus($code)
