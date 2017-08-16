@@ -3,11 +3,12 @@
 require_once 'vendor/autoload.php';
 
 $client = new GuzzleHttp\Client();
+$hostnaem = 'http://localhost:8080';
 
 $username = 'user1';
 $apiKey = '[... key here ...]';
 
-$res = $client->post('http://localhost:8080/user/login', [
+$res = $client->post($hostname.'/user/login', [
     'form_params' => [
         'username' => $username,
         'key' => $apiKey
@@ -25,7 +26,7 @@ $session = $result->message->session;
 $body = '';
 $messageHash = hash_hmac('SHA512', $body, $session.time());
 
-$res = $client->post('http://localhost:8080/test', [
+$res = $client->post($hostname.'/test', [
     'headers' => [
         'X-Token' => $apiKey,
         'X-Token-Hash' => $messageHash
