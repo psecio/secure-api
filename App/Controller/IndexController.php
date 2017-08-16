@@ -8,4 +8,9 @@ class IndexController extends \App\Controller\BaseController
     {
         return $this->jsonSuccess('Hello world!');
     }
+
+    public function test()
+    {
+        return $this->jsonSuccess('Key validated!');
+    }
 }
